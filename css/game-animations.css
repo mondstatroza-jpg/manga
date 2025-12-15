@@ -1,0 +1,368 @@
+/* game-animations.css - Анимации и игровые элементы */
+
+/* Игрок - милый котик */
+.player-cat {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    transition: all 0.15s ease;
+    z-index: 5;
+    cursor: pointer;
+}
+
+/* Котик для светлой темы - черный */
+.light-theme .cat-body {
+    background: #333333;
+}
+
+/* Котик для темной темы - белый */
+.dark-theme .cat-body {
+    background: #ffffff;
+}
+
+/* Котик для аниме темы - розовый */
+.anime-theme .cat-body {
+    background: #ff6b9d;
+}
+
+.cat-body {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cat-ear {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: -12px;
+}
+
+    .cat-ear.left {
+        left: 10px;
+        transform: rotate(-20deg);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .cat-ear.right {
+        right: 10px;
+        transform: rotate(20deg);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+.cat-eye {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 25px;
+    background: white;
+    border-radius: 50%;
+}
+
+    .cat-eye.left {
+        left: 15px;
+    }
+
+    .cat-eye.right {
+        right: 15px;
+    }
+
+.cat-pupil {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    animation: blink 3s infinite;
+}
+
+.cat-nose {
+    position: absolute;
+    width: 15px;
+    height: 8px;
+    background: #ff3366;
+    border-radius: 50%;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cat-mouth {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    border: 2px solid #333;
+    border-color: transparent transparent #333 transparent;
+    border-radius: 0 0 30px 30px;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Падающие предметы */
+.falling-item {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: top 0.05s linear;
+    z-index: 4;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Хорошие предметы */
+.item-fish {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3082/3082385.png');
+}
+
+.item-sushi {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2718/2718224.png');
+}
+
+.item-milk {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2433/2433316.png');
+}
+
+.item-cake {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3075/3075977.png');
+}
+
+/* Плохие предметы */
+.item-bomb {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/619/619017.png');
+    animation: wobble 0.5s infinite alternate;
+}
+
+.item-chili {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/2432/2432988.png');
+    animation: wobble 0.7s infinite alternate;
+}
+
+.item-lemon {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3050/3050171.png');
+    animation: wobble 0.6s infinite alternate;
+}
+
+/* Бустеры */
+.booster-speed {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3523/3523063.png');
+    animation: rotate 2s infinite linear;
+}
+
+.booster-slow {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3523/3523064.png');
+    animation: pulse 1s infinite alternate;
+}
+
+.booster-shield {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/3523/3523065.png');
+    animation: float 2s infinite ease-in-out;
+}
+
+/* Анимации */
+@keyframes blink {
+    0%, 90%, 100% {
+        transform: scaleY(1);
+    }
+
+    95% {
+        transform: scaleY(0.1);
+    }
+}
+
+@keyframes wobble {
+    0% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Эффекты сбора */
+.collect-effect {
+    position: absolute;
+    font-weight: 700;
+    font-size: 1.8rem;
+    animation: floatUp 1s ease-out forwards;
+    pointer-events: none;
+    z-index: 6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.good-effect {
+    color: var(--success-color);
+}
+
+.bad-effect {
+    color: var(--error-color);
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(1.5);
+    }
+}
+
+/* Взрыв */
+.explosion {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--error-color) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: explode 0.5s ease-out forwards;
+    pointer-events: none;
+    z-index: 7;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Щит */
+.shield-effect {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--accent-color);
+    border-radius: 50%;
+    animation: shieldPulse 1s infinite;
+    pointer-events: none;
+    z-index: 8;
+}
+
+@keyframes shieldPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.3;
+    }
+}
+
+/* Ускорение */
+.speed-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.3), transparent);
+    animation: speedLines 0.5s linear infinite;
+    pointer-events: none;
+    z-index: 8;
+}
+
+@keyframes speedLines {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Замедление */
+.slow-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 255, 0.1);
+    animation: slowPulse 2s infinite;
+    pointer-events: none;
+    z-index: 8;
+}
+
+@keyframes slowPulse {
+    0%, 100% {
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Адаптация для тем */
+.light-theme #gameCanvas {
+    background: linear-gradient(180deg, #e6f0ff, #d0e0ff);
+}
+
+.dark-theme #gameCanvas {
+    background: linear-gradient(180deg, #2d2d5a, #1a1a2e);
+}
+
+.anime-theme #gameCanvas {
+    background: linear-gradient(180deg, #ffd6e0, #ffacc7);
+}
+
+/* Анимация появления предметов */
+@keyframes spawn {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.falling-item {
+    animation: spawn 0.3s ease-out;
+}
